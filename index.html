@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    <title>PDF Resizer 2026 - Free Online PDF Compressor & Converter (No Uploads)</title>
+    <title>PDF Resizer 2026 - Free Online PDF Compressor & Converter</title>
     <meta name="description" content="Free 2026 PDF Resizer Tool. Compress PDF to 100kb, 200kb, or specific dimensions (A4, Letter, Passport). Secure client-side processing - your files never leave your device.">
     <meta name="keywords" content="pdf resizer, compress pdf 100kb, resize pdf online, reduce pdf size, pdf optimizer 2026, change pdf page size, a4 to letter pdf, secure pdf tool">
     <meta name="author" content="PDF Resizer Secure Tool">
@@ -32,11 +32,11 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 
     <style>
-        /* === PREMIUM DESIGN SYSTEM === */
+        
         :root {
-            --primary: #7e22ce; /* Royal Purple */
+            --primary: #7e22ce; 
             --primary-dark: #581c87;
-            --accent: #db2777; /* Pink Accent */
+            --accent: #db2777; 
             --text: #1e293b;
             --text-light: #64748b;
         }
@@ -45,7 +45,7 @@
         
         body {
             font-family: 'Montserrat', sans-serif;
-            /* Premium Animated Background */
+            
             background: linear-gradient(135deg, #1e3c72 0%, #2a5298 25%, #7e22ce 50%, #db2777 75%, #f97316 100%);
             background-size: 400% 400%;
             animation: gradientShift 15s ease infinite;
@@ -70,7 +70,7 @@
             flex: 1;
         }
 
-        /* === AD SPACES (Glass Effect) === */
+        
         .ad-space {
             background-color: rgba(255, 255, 255, 0.85);
             backdrop-filter: blur(5px);
@@ -90,9 +90,9 @@
         .ad-middle { width: 100%; height: 250px; margin: 40px 0; }
         .ad-bottom { width: 100%; height: 90px; margin-top: 30px; }
 
-        /* === MAIN TOOL CONTAINER === */
+        
         .container {
-            background: rgba(255, 255, 255, 0.95); /* Premium Glassmorphism */
+            background: rgba(255, 255, 255, 0.95); 
             backdrop-filter: blur(20px);
             border-radius: 30px;
             box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
@@ -107,7 +107,7 @@
             font-family: 'Playfair Display', serif;
             font-size: 42px;
             font-weight: 700;
-            /* Gradient Text */
+            
             background: linear-gradient(135deg, #1e3c72, #7e22ce);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
@@ -115,7 +115,7 @@
         }
         .subtitle { font-size: 14px; color: var(--text-light); font-weight: 600; text-transform: uppercase; letter-spacing: 1px; }
 
-        /* Upload Zone */
+        
         .upload-area {
             border: 3px dashed var(--primary);
             border-radius: 20px;
@@ -136,7 +136,7 @@
         .upload-sub { font-size: 13px; color: var(--text-light); margin-top: 5px; }
         #pdfInput { display: none; }
 
-        /* Form Elements */
+        
         .form-group { margin-bottom: 25px; }
         .label { display: block; font-size: 13px; font-weight: 700; color: var(--text); margin-bottom: 10px; text-transform: uppercase; }
         .input-group { display: flex; gap: 10px; }
@@ -160,7 +160,7 @@
         }
         .range-val { font-weight: 700; color: var(--primary); min-width: 45px; text-align: right; }
 
-        /* Buttons */
+        
         .btn-group { display: flex; gap: 15px; margin-top: 30px; }
         button {
             flex: 1; padding: 16px; border: none; border-radius: 12px; font-size: 15px; font-weight: 700;
@@ -180,7 +180,7 @@
         }
         .btn-success:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(16, 185, 129, 0.4); }
 
-        /* Status & Info */
+        
         .status { text-align: center; margin-bottom: 15px; font-size: 14px; font-weight: 600; min-height: 20px; }
         .status.success { color: #10b981; } .status.error { color: #ef4444; }
 
@@ -192,7 +192,7 @@
         .stat-box small { display: block; color: var(--text-light); font-size: 11px; text-transform: uppercase; font-weight: 600; }
         .stat-box strong { font-size: 14px; color: var(--text); }
 
-        /* Trust Badges */
+        
         .trust-row {
             display: flex; justify-content: center; gap: 40px; margin-top: 40px;
             padding-top: 30px; border-top: 1px solid #eee;
@@ -200,7 +200,7 @@
         .trust-item { text-align: center; font-size: 12px; color: var(--text-light); font-weight: 600; }
         .trust-icon { font-size: 24px; display: block; margin-bottom: 5px; }
 
-        /* SEO Content Section */
+        
         .content-block { 
             margin-top: 40px; padding: 30px; 
             background: rgba(255, 255, 255, 0.9); border-radius: 20px;
@@ -210,7 +210,7 @@
         .content-block p { margin-bottom: 15px; color: #475569; font-size: 15px; }
         .content-block ul { margin-left: 20px; margin-bottom: 20px; color: #475569; }
 
-        /* Footer */
+        
         footer {
             background: rgba(30, 41, 59, 0.95); color: #94a3b8; padding: 60px 20px;
             margin-top: 60px; text-align: center; backdrop-filter: blur(10px);
@@ -224,7 +224,7 @@
         .footer-nav a:hover { color: white; text-decoration: underline; }
         .legal-note { font-size: 12px; opacity: 0.6; max-width: 600px; margin: 20px auto 0; }
 
-        /* === MODALS (Standard 2026 Policies) === */
+        
         .modal {
             display: none; position: fixed; z-index: 1000; left: 0; top: 0;
             width: 100%; height: 100%; overflow: auto;
@@ -247,7 +247,7 @@
         .modal p, .modal li { margin-bottom: 12px; color: #475569; font-size: 14px; }
         .modal-date { font-size: 12px; color: #94a3b8; margin-bottom: 20px; display: block; font-weight: 600; text-transform: uppercase; }
 
-        /* Loading Animation */
+    
         .overlay {
             position: absolute; top: 0; left: 0; width: 100%; height: 100%;
             background: rgba(255,255,255,0.92); z-index: 50; border-radius: 30px;
@@ -268,6 +268,93 @@
             .btn-group { flex-direction: column; }
             .trust-row { gap: 15px; }
         }
+        <style>
+        
+    @media (max-width: 768px) {
+        .page-wrapper {
+            padding: 10px;
+        }
+
+        .container {
+            padding: 30px 20px; /
+            border-radius: 20px;
+        }
+
+        .title {
+            font-size: 30px; 
+        }
+
+        .subtitle {
+            font-size: 12px;
+        }
+
+        .input-group {
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .input-group input, 
+        .input-group select {
+            width: 100%;
+        }
+
+        .btn-group {
+            flex-direction: column;
+        }
+
+        button {
+            width: 100%;
+            padding: 14px;
+        }
+        
+        .file-stats.show {
+            grid-template-columns: 1fr; 
+            gap: 15px;
+        }
+
+        .trust-row {
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-top: 25px;
+        }
+
+        .trust-item {
+            flex: 1 1 30%; 
+            font-size: 10px;
+        }
+
+        .ad-top, .ad-bottom {
+            height: 60px; 
+        }
+
+        .ad-middle {
+            height: 200px;
+        }
+
+        .content-block {
+            padding: 20px;
+        }
+
+        .content-block h2 {
+            font-size: 22px;
+        }
+
+        .modal-content {
+            padding: 25px;
+            width: 95%;
+            margin: 5% auto;
+        }
+    }
+
+    @media (max-width: 400px) {
+        .title {
+            font-size: 26px;
+        }
+        
+        .upload-area {
+            padding: 25px 10px;
+        }
+        
     </style>
 </head>
 <body>
@@ -292,7 +379,7 @@
 
         <div class="header">
             <h1 class="title">PDF Resizer</h1>
-            <p class="subtitle">Secure, Client-Side Compression Tool (2026 Edition)</p>
+            <p class="subtitle">Secure, Compression Tool 2026</p>
         </div>
 
         <div class="upload-area" id="uploadArea">
@@ -415,7 +502,7 @@
 </div>
 
 <script>
-    // === MODAL LOGIC ===
+    
     function openModal(id) { document.getElementById(id).style.display = "block"; }
     function closeModal(id) { document.getElementById(id).style.display = "none"; }
     window.onclick = function(event) {
@@ -424,7 +511,6 @@
         }
     }
 
-    // === PDF APP LOGIC ===
     let uploadedPDF = null;
     let resizedPDF = null;
     let originalSize = 0;
@@ -433,7 +519,6 @@
     document.addEventListener('DOMContentLoaded', initializeApp);
 
     async function initializeApp() {
-        // Setup Worker
         const workerUrl = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
         try {
             const response = await fetch(workerUrl);
@@ -444,7 +529,6 @@
             pdfjsLib.GlobalWorkerOptions.workerSrc = workerUrl;
         }
 
-        // Listeners
         const uploadArea = document.getElementById('uploadArea');
         const pdfInput = document.getElementById('pdfInput');
         const qualityInput = document.getElementById('quality');
@@ -588,4 +672,5 @@
     }
 </script>
 </body>
+
 </html>
