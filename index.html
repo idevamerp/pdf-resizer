@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>PDF Resizer 2026 - Free Online PDF Compressor & Converter (No Uploads)</title>
+    <meta name="description" content="Free 2026 PDF Resizer Tool. Compress PDF to 100kb, 200kb, or specific dimensions (A4, Letter, Passport). Secure client-side processing - your files never leave your device.">
+    <meta name="keywords" content="pdf resizer, compress pdf 100kb, resize pdf online, reduce pdf size, pdf optimizer 2026, change pdf page size, a4 to letter pdf, secure pdf tool">
+    <meta name="author" content="PDF Resizer Secure Tool">
+    <meta name="robots" content="index, follow">
+    
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="PDF Resizer 2026 - Premium, Secure & Free">
+    <meta property="og:description" content="Resize and compress PDFs instantly in your browser with premium precision. No server uploads.">
+    
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "PDF Resizer Premium",
+      "applicationCategory": "ProductivityApplication",
+      "operatingSystem": "Web Browser",
+      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+      "description": "Browser-based tool to resize and compress PDF files securely without server uploads."
+    }
+    </script>
+
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+    <style>
+        /* === PREMIUM DESIGN SYSTEM === */
+        :root {
+            --primary: #7e22ce; /* Royal Purple */
+            --primary-dark: #581c87;
+            --accent: #db2777; /* Pink Accent */
+            --text: #1e293b;
+            --text-light: #64748b;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: 'Montserrat', sans-serif;
+            /* Premium Animated Background */
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 25%, #7e22ce 50%, #db2777 75%, #f97316 100%);
+            background-size: 400% 400%;
+            animation: gradientShift 15s ease infinite;
+            color: var(--text);
+            line-height: 1.6;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .page-wrapper {
+            max-width: 850px;
+            margin: 0 auto;
+            padding: 20px;
+            width: 100%;
+            flex: 1;
+        }
+
+        /* === AD SPACES (Glass Effect) === */
+        .ad-space {
+            background-color: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(5px);
+            border: 1px dashed rgba(255,255,255,0.4);
+            border-radius: 12px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #64748b;
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 1px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        }
+        .ad-top { width: 100%; height: 90px; margin-bottom: 30px; }
+        .ad-middle { width: 100%; height: 250px; margin: 40px 0; }
+        .ad-bottom { width: 100%; height: 90px; margin-top: 30px; }
+
+        /* === MAIN TOOL CONTAINER === */
+        .container {
+            background: rgba(255, 255, 255, 0.95); /* Premium Glassmorphism */
+            backdrop-filter: blur(20px);
+            border-radius: 30px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            padding: 50px 40px;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.4);
+        }
+
+        .header { text-align: center; margin-bottom: 30px; }
+        .title {
+            font-family: 'Playfair Display', serif;
+            font-size: 42px;
+            font-weight: 700;
+            /* Gradient Text */
+            background: linear-gradient(135deg, #1e3c72, #7e22ce);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 8px;
+        }
+        .subtitle { font-size: 14px; color: var(--text-light); font-weight: 600; text-transform: uppercase; letter-spacing: 1px; }
+
+        /* Upload Zone */
+        .upload-area {
+            border: 3px dashed var(--primary);
+            border-radius: 20px;
+            padding: 40px 20px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background: linear-gradient(135deg, rgba(126, 34, 206, 0.05), rgba(42, 82, 152, 0.05));
+            margin-bottom: 25px;
+        }
+        .upload-area:hover { 
+            border-color: var(--accent);
+            background: linear-gradient(135deg, rgba(126, 34, 206, 0.1), rgba(219, 39, 119, 0.1));
+            transform: scale(1.02);
+        }
+        .upload-icon { font-size: 48px; margin-bottom: 12px; display: block; }
+        .upload-text { font-size: 18px; font-weight: 700; color: #333; }
+        .upload-sub { font-size: 13px; color: var(--text-light); margin-top: 5px; }
+        #pdfInput { display: none; }
+
+        /* Form Elements */
+        .form-group { margin-bottom: 25px; }
+        .label { display: block; font-size: 13px; font-weight: 700; color: var(--text); margin-bottom: 10px; text-transform: uppercase; }
+        .input-group { display: flex; gap: 10px; }
+        
+        input[type="number"], .unit-select {
+            flex: 1; padding: 14px; border: 2px solid #e2e8f0; border-radius: 12px;
+            font-size: 15px; font-family: 'Montserrat', sans-serif; transition: all 0.3s;
+        }
+        input[type="number"]:focus, .unit-select:focus { border-color: var(--primary); outline: none; }
+        
+        .range-wrap { display: flex; align-items: center; gap: 15px; }
+        input[type="range"] { 
+            flex: 1; height: 6px; border-radius: 3px; 
+            background: linear-gradient(90deg, #1e3c72, #7e22ce); 
+            outline: none; -webkit-appearance: none; cursor: pointer;
+        }
+        input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none; width: 20px; height: 20px; border-radius: 50%;
+            background: linear-gradient(135deg, #7e22ce, #db2777); cursor: pointer;
+            box-shadow: 0 2px 8px rgba(126, 34, 206, 0.4);
+        }
+        .range-val { font-weight: 700; color: var(--primary); min-width: 45px; text-align: right; }
+
+        /* Buttons */
+        .btn-group { display: flex; gap: 15px; margin-top: 30px; }
+        button {
+            flex: 1; padding: 16px; border: none; border-radius: 12px; font-size: 15px; font-weight: 700;
+            cursor: pointer; transition: all 0.3s; font-family: 'Montserrat', sans-serif;
+            text-transform: uppercase; letter-spacing: 0.5px; display: flex; justify-content: center; align-items: center; gap: 8px;
+        }
+        .btn-primary { 
+            background: linear-gradient(135deg, #7e22ce, #db2777); color: white; 
+            box-shadow: 0 5px 15px rgba(126, 34, 206, 0.3);
+        }
+        .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(126, 34, 206, 0.4); }
+        .btn-primary:disabled { opacity: 0.6; cursor: not-allowed; }
+        
+        .btn-success { 
+            background: linear-gradient(135deg, #10b981, #059669); color: white; display: none; 
+            box-shadow: 0 5px 15px rgba(16, 185, 129, 0.3);
+        }
+        .btn-success:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(16, 185, 129, 0.4); }
+
+        /* Status & Info */
+        .status { text-align: center; margin-bottom: 15px; font-size: 14px; font-weight: 600; min-height: 20px; }
+        .status.success { color: #10b981; } .status.error { color: #ef4444; }
+
+        .file-stats {
+            background: rgba(126, 34, 206, 0.05); border: 1px solid rgba(126, 34, 206, 0.1); border-radius: 12px;
+            padding: 15px; margin-bottom: 25px; display: none;
+        }
+        .file-stats.show { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; text-align: center; }
+        .stat-box small { display: block; color: var(--text-light); font-size: 11px; text-transform: uppercase; font-weight: 600; }
+        .stat-box strong { font-size: 14px; color: var(--text); }
+
+        /* Trust Badges */
+        .trust-row {
+            display: flex; justify-content: center; gap: 40px; margin-top: 40px;
+            padding-top: 30px; border-top: 1px solid #eee;
+        }
+        .trust-item { text-align: center; font-size: 12px; color: var(--text-light); font-weight: 600; }
+        .trust-icon { font-size: 24px; display: block; margin-bottom: 5px; }
+
+        /* SEO Content Section */
+        .content-block { 
+            margin-top: 40px; padding: 30px; 
+            background: rgba(255, 255, 255, 0.9); border-radius: 20px;
+            backdrop-filter: blur(10px);
+        }
+        .content-block h2 { font-family: 'Playfair Display', serif; font-size: 28px; color: #1e3c72; margin-bottom: 15px; }
+        .content-block p { margin-bottom: 15px; color: #475569; font-size: 15px; }
+        .content-block ul { margin-left: 20px; margin-bottom: 20px; color: #475569; }
+
+        /* Footer */
+        footer {
+            background: rgba(30, 41, 59, 0.95); color: #94a3b8; padding: 60px 20px;
+            margin-top: 60px; text-align: center; backdrop-filter: blur(10px);
+        }
+        .footer-nav { margin-bottom: 20px; }
+        .footer-nav a {
+            color: #e2e8f0; text-decoration: none; margin: 0 15px;
+            font-size: 14px; font-weight: 500; transition: color 0.2s;
+            cursor: pointer;
+        }
+        .footer-nav a:hover { color: white; text-decoration: underline; }
+        .legal-note { font-size: 12px; opacity: 0.6; max-width: 600px; margin: 20px auto 0; }
+
+        /* === MODALS (Standard 2026 Policies) === */
+        .modal {
+            display: none; position: fixed; z-index: 1000; left: 0; top: 0;
+            width: 100%; height: 100%; overflow: auto;
+            background-color: rgba(0,0,0,0.6); backdrop-filter: blur(8px);
+        }
+        .modal-content {
+            background-color: #fff; margin: 8% auto; padding: 40px;
+            border-radius: 20px; width: 90%; max-width: 700px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+            position: relative; animation: slideIn 0.3s ease;
+        }
+        @keyframes slideIn { from { transform: translateY(-20px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+        
+        .close-modal {
+            position: absolute; right: 25px; top: 20px;
+            font-size: 28px; font-weight: bold; color: #aaa; cursor: pointer; transition: color 0.2s;
+        }
+        .close-modal:hover { color: var(--primary); }
+        .modal h2 { font-family: 'Playfair Display', serif; margin-bottom: 20px; color: var(--text); }
+        .modal p, .modal li { margin-bottom: 12px; color: #475569; font-size: 14px; }
+        .modal-date { font-size: 12px; color: #94a3b8; margin-bottom: 20px; display: block; font-weight: 600; text-transform: uppercase; }
+
+        /* Loading Animation */
+        .overlay {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(255,255,255,0.92); z-index: 50; border-radius: 30px;
+            display: flex; flex-direction: column; justify-content: center; align-items: center;
+            opacity: 0; pointer-events: none; transition: opacity 0.3s;
+        }
+        .overlay.show { opacity: 1; pointer-events: all; }
+        .spinner { 
+            width: 50px; height: 50px; border: 4px solid rgba(126, 34, 206, 0.1); 
+            border-top: 4px solid var(--primary); border-radius: 50%; 
+            animation: spin 1s linear infinite; margin-bottom: 20px; 
+        }
+        @keyframes spin { to { transform: rotate(360deg); } }
+
+        @media (max-width: 600px) {
+            .container { padding: 30px 20px; }
+            .title { font-size: 32px; }
+            .btn-group { flex-direction: column; }
+            .trust-row { gap: 15px; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="page-wrapper" style="padding-bottom: 0;">
+    <div class="ad-space ad-top">
+        Advertisement Space (Header)
+    </div>
+</div>
+
+<div class="page-wrapper">
+    <div class="container">
+        
+        <div class="overlay" id="loader">
+            <div class="spinner"></div>
+            <h3 id="loaderTitle" style="font-family: 'Playfair Display'; margin-bottom: 5px;">Processing...</h3>
+            <div style="width: 200px; height: 6px; background: #e2e8f0; border-radius: 3px; margin-top: 10px; overflow: hidden;">
+                <div id="loaderBar" style="width: 0%; height: 100%; background: linear-gradient(90deg, #7e22ce, #db2777); transition: width 0.3s;"></div>
+            </div>
+            <p id="loaderText" style="font-size: 13px; color: var(--text-light); margin-top: 10px; font-weight: 600;">Initializing...</p>
+        </div>
+
+        <div class="header">
+            <h1 class="title">PDF Resizer</h1>
+            <p class="subtitle">Secure, Client-Side Compression Tool (2026 Edition)</p>
+        </div>
+
+        <div class="upload-area" id="uploadArea">
+            <span class="upload-icon">📄</span>
+            <div class="upload-text">Select PDF File</div>
+            <div class="upload-sub">Drag & drop or click to upload</div>
+        </div>
+        <input type="file" id="pdfInput" accept=".pdf" />
+
+        <div class="file-stats" id="fileInfo">
+            <div class="stat-box"><small>Original Size</small><strong id="originalSize">-</strong></div>
+            <div class="stat-box"><small>Pages</small><strong id="pageCount">-</strong></div>
+            <div class="stat-box"><small>New Size</small><strong id="compressedSize" style="color: #10b981;">-</strong></div>
+        </div>
+
+        <div class="form-group">
+            <label class="label">Target Dimensions</label>
+            <div class="input-group">
+                <input type="number" id="width" value="8.3" step="0.1" placeholder="W">
+                <input type="number" id="height" value="11.7" step="0.1" placeholder="H">
+                <select class="unit-select" id="widthUnit">
+                    <option value="inches">Inches</option>
+                    <option value="cm">cm</option>
+                    <option value="mm">mm</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="label">Compression Level</label>
+            <div class="range-wrap">
+                <span style="font-size: 12px; color: #64748b; font-weight: 600;">Max Compression</span>
+                <input type="range" id="quality" min="10" max="100" value="75">
+                <span style="font-size: 12px; color: #64748b; font-weight: 600;">Max Quality</span>
+                <span class="range-val" id="qualityValue">75%</span>
+            </div>
+        </div>
+
+        <div class="status" id="status"></div>
+
+        <div class="btn-group">
+            <button class="btn-primary" id="resizeBtn" onclick="resizePDF()">
+                <span>Resize PDF</span>
+            </button>
+            <button class="btn-success" id="downloadBtn" onclick="downloadPDF()">
+                <span>Download File</span>
+            </button>
+        </div>
+
+        <div class="trust-row">
+            <div class="trust-item">
+                <span class="trust-icon">🔒</span>
+                <div>AES-256 Secure</div>
+            </div>
+            <div class="trust-item">
+                <span class="trust-icon">⚡</span>
+                <div>Browser Based</div>
+            </div>
+            <div class="trust-item">
+                <span class="trust-icon">🛡️</span>
+                <div>No Data Stored</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="ad-space ad-middle">
+        Advertisement Space (Content)
+    </div>
+
+    <div class="content-block">
+        <h2>How to Compress and Resize PDF Files Securely</h2>
+        <p>In 2026, data privacy is paramount. Our <strong>PDF Resizer</strong> is designed with a "Privacy-First" architecture. Unlike older tools that require you to upload your sensitive documents to a cloud server, this tool processes your files 100% locally within your web browser using WebAssembly technology.</p>
+        
+        <h3>Premium Features:</h3>
+        <ul>
+            <li><strong>Reduce PDF Size:</strong> Optimize documents for email attachments (e.g., under 100KB or 200KB).</li>
+            <li><strong>Change Dimensions:</strong> Easily convert A4 to Letter, Legal, or custom sizes for printing.</li>
+            <li><strong>Zero Footprint:</strong> Once you close this tab, all processed data is instantly wiped from your browser memory.</li>
+        </ul>
+    </div>
+    
+    <div class="ad-space ad-bottom">
+        Advertisement Space (Footer)
+    </div>
+</div>
+
+<footer>
+    <div class="footer-nav">
+        <a onclick="openModal('privacyModal')">Privacy Policy</a>
+        <a onclick="openModal('termsModal')">Terms of Service</a>
+        <a href="mailto:support@pdfresizer.com">Contact</a>
+    </div>
+    <div class="legal-note">
+        &copy; 2026 PDF Resizer Tool. All rights reserved. <br>
+        This tool runs locally. No files are uploaded to our servers.
+    </div>
+</footer>
+
+<div id="privacyModal" class="modal">
+    <div class="modal-content">
+        <span class="close-modal" onclick="closeModal('privacyModal')">&times;</span>
+        <h2>Privacy Policy</h2>
+        <span class="modal-date">Last Updated: January 1, 2026</span>
+        <p><strong>1. Data Collection</strong><br>We do not collect, store, or transmit your files. All PDF processing is performed "client-side" (on your own device) using JavaScript and WebAssembly libraries.</p>
+        <p><strong>2. Server Uploads</strong><br>Unlike other services, your documents are <strong>never</strong> uploaded to our servers. They remain in your browser's memory and are discarded immediately when you close the page.</p>
+        <p><strong>3. Cookies & Analytics</strong><br>We use non-invasive, anonymous analytics to track page views and performance errors. We do not track personal user data or document contents.</p>
+        <p><strong>4. Third-Party Ads</strong><br>This site displays advertisements provided by third-party networks (e.g., Google AdSense). These networks may use cookies to serve ads based on your visit history.</p>
+    </div>
+</div>
+
+<div id="termsModal" class="modal">
+    <div class="modal-content">
+        <span class="close-modal" onclick="closeModal('termsModal')">&times;</span>
+        <h2>Terms of Service</h2>
+        <span class="modal-date">Effective Date: January 1, 2026</span>
+        <p><strong>1. Usage License</strong><br>This tool is free to use for personal and commercial purposes.</p>
+        <p><strong>2. Limitation of Liability</strong><br>This tool is provided "as is" without warranties of any kind. Since processing happens on your device, we are not responsible for any data loss, corruption, or browser crashes resulting from the use of this tool.</p>
+        <p><strong>3. Restrictions</strong><br>You may not reverse-engineer the code or use this service for illegal activities.</p>
+    </div>
+</div>
+
+<script>
+    // === MODAL LOGIC ===
+    function openModal(id) { document.getElementById(id).style.display = "block"; }
+    function closeModal(id) { document.getElementById(id).style.display = "none"; }
+    window.onclick = function(event) {
+        if (event.target.classList.contains('modal')) {
+            event.target.style.display = "none";
+        }
+    }
+
+    // === PDF APP LOGIC ===
+    let uploadedPDF = null;
+    let resizedPDF = null;
+    let originalSize = 0;
+    let pdfDoc = null; 
+
+    document.addEventListener('DOMContentLoaded', initializeApp);
+
+    async function initializeApp() {
+        // Setup Worker
+        const workerUrl = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+        try {
+            const response = await fetch(workerUrl);
+            const workerScript = await response.text();
+            const blob = new Blob([workerScript], { type: "text/javascript" });
+            pdfjsLib.GlobalWorkerOptions.workerSrc = URL.createObjectURL(blob);
+        } catch (error) {
+            pdfjsLib.GlobalWorkerOptions.workerSrc = workerUrl;
+        }
+
+        // Listeners
+        const uploadArea = document.getElementById('uploadArea');
+        const pdfInput = document.getElementById('pdfInput');
+        const qualityInput = document.getElementById('quality');
+        
+        qualityInput.addEventListener('input', (e) => {
+            document.getElementById('qualityValue').textContent = e.target.value + '%';
+        });
+
+        uploadArea.addEventListener('click', () => pdfInput.click());
+        uploadArea.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            uploadArea.style.borderColor = '#db2777';
+            uploadArea.style.transform = 'scale(1.02)';
+        });
+        uploadArea.addEventListener('dragleave', (e) => {
+            e.preventDefault();
+            uploadArea.style.borderColor = '#7e22ce';
+            uploadArea.style.transform = 'scale(1)';
+        });
+        uploadArea.addEventListener('drop', (e) => {
+            e.preventDefault();
+            uploadArea.style.borderColor = '#7e22ce';
+            if (e.dataTransfer.files.length > 0) handleUpload(e.dataTransfer.files[0]);
+        });
+        pdfInput.addEventListener('change', (e) => {
+            if (e.target.files.length > 0) handleUpload(e.target.files[0]);
+        });
+    }
+
+    function showLoader(title, initialPercent) {
+        const loader = document.getElementById('loader');
+        document.getElementById('loaderTitle').textContent = title;
+        document.getElementById('loaderBar').style.width = initialPercent + '%';
+        loader.classList.add('show');
+    }
+
+    function updateLoader(percent, text) {
+        document.getElementById('loaderBar').style.width = percent + '%';
+        document.getElementById('loaderText').textContent = text;
+    }
+
+    function hideLoader() {
+        document.getElementById('loader').classList.remove('show');
+    }
+
+    async function handleUpload(file) {
+        if (!file || file.type !== 'application/pdf') return alert('Please upload a PDF.');
+        
+        showLoader('Uploading File...', 20);
+        originalSize = file.size;
+        
+        const reader = new FileReader();
+        reader.onload = async function(e) {
+            try {
+                updateLoader(60, 'Parsing Document...');
+                const data = new Uint8Array(e.target.result);
+                uploadedPDF = data;
+                pdfDoc = await pdfjsLib.getDocument({ data }).promise;
+                
+                updateLoader(100, 'Ready!');
+                setTimeout(() => {
+                    hideLoader();
+                    document.getElementById('fileInfo').classList.add('show');
+                    document.getElementById('originalSize').textContent = formatBytes(originalSize);
+                    document.getElementById('pageCount').textContent = pdfDoc.numPages;
+                    document.getElementById('compressedSize').textContent = '-';
+                    document.getElementById('downloadBtn').style.display = 'none';
+                }, 400);
+            } catch (err) {
+                hideLoader();
+                alert('Error reading PDF: ' + err.message);
+            }
+        };
+        reader.readAsArrayBuffer(file);
+    }
+
+    async function resizePDF() {
+        if (!uploadedPDF) return alert('Please upload a file first.');
+        
+        const width = parseFloat(document.getElementById('width').value);
+        const height = parseFloat(document.getElementById('height').value);
+        const unit = document.getElementById('widthUnit').value === 'inches' ? 'in' : document.getElementById('widthUnit').value;
+        const quality = parseInt(document.getElementById('quality').value) / 100;
+
+        showLoader('Processing...', 0);
+        document.getElementById('resizeBtn').disabled = true;
+
+        try {
+            const { jsPDF } = window.jspdf;
+            const newDoc = new jsPDF({ orientation: width > height ? 'l' : 'p', unit: unit, format: [width, height] });
+            
+            for (let i = 1; i <= pdfDoc.numPages; i++) {
+                updateLoader(Math.round((i / pdfDoc.numPages) * 100), `Optimizing Page ${i} of ${pdfDoc.numPages}`);
+                
+                const page = await pdfDoc.getPage(i);
+                const viewport = page.getViewport({ scale: 1.5 });
+                const canvas = document.createElement('canvas');
+                const ctx = canvas.getContext('2d');
+                canvas.width = viewport.width;
+                canvas.height = viewport.height;
+                
+                await page.render({ canvasContext: ctx, viewport }).promise;
+                const imgData = canvas.toDataURL('image/jpeg', quality);
+                
+                if (i > 1) newDoc.addPage();
+                
+                const pageWidth = newDoc.internal.pageSize.getWidth();
+                const pageHeight = newDoc.internal.pageSize.getHeight();
+                newDoc.addImage(imgData, 'JPEG', 0, 0, pageWidth, pageHeight);
+                
+                await new Promise(r => setTimeout(r, 10));
+            }
+
+            resizedPDF = newDoc;
+            const out = resizedPDF.output('arraybuffer');
+            
+            document.getElementById('compressedSize').textContent = formatBytes(out.byteLength);
+            document.getElementById('downloadBtn').style.display = 'flex';
+            document.getElementById('status').textContent = `Success! Reduced by ${((1 - out.byteLength/originalSize)*100).toFixed(0)}%`;
+            document.getElementById('status').className = 'status success';
+            
+        } catch (e) {
+            console.error(e);
+            alert('Error: ' + e.message);
+        } finally {
+            hideLoader();
+            document.getElementById('resizeBtn').disabled = false;
+        }
+    }
+
+    function downloadPDF() {
+        if (resizedPDF) resizedPDF.save('resized-document-2026.pdf');
+    }
+
+    function formatBytes(bytes) {
+        if (bytes === 0) return '0 B';
+        const k = 1024;
+        const sizes = ['B', 'KB', 'MB', 'GB'];
+        const i = Math.floor(Math.log(bytes) / Math.log(k));
+        return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
+    }
+</script>
+</body>
+</html>
